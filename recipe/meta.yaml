@@ -40,8 +40,8 @@ about:
     Automat is a library for concise, idiomatic Python expression of
     finite-state automata (particularly deterministic finite-state
     transducers).
-  doc_url: https://github.com/glyph/automat/
-  dev_url: https://github.com/glyph/automat/
+  doc_url: http://automat.readthedocs.io
+  dev_url: https://github.com/glyph/automat
 
 extra:
   recipe-maintainers:
