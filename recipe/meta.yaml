@@ -1,6 +1,6 @@
-{% set name = "automat" %}
+{% set name = "Automat" %}
 {% set version = "0.6.0" %}
-{% set sha256 = "423be7e4d4187eb0917de0ddc5d87413f13a3ec4989d31dba31b15dd7a1016ed" %}
+{% set sha256 = "3c1fd04ecf08ac87b4dd3feae409542e9bf7827257097b2b6ed5692f69d6f6a8" %}
 
 package:
   name: {{ name|lower }}
@@ -8,19 +8,22 @@ package:
 
 source:
   fn: {{ name }}-{{ version }}.tar.gz
-  url: https://github.com/glyph/{{ name }}/archive/v{{ version }}.tar.gz
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
   sha256: {{ sha256 }}
   patches:
-    - setup.py.patch
+    - 0001-m2r-is-not-a-strict-build-dependency.patch
 
 build:
   number: 0
+  entry_points:
+    - automat-visualize = automat._visualize:tool
   script: python setup.py install --single-version-externally-managed --record record.txt
 
 requirements:
   build:
     - python
     - setuptools
+    - setuptools_scm
   run:
     - python
     - attrs
@@ -46,3 +49,4 @@ about:
 extra:
   recipe-maintainers:
     - CJ-Wright
+    - nehaljwani
