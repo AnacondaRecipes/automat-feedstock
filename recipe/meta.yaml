@@ -18,10 +18,15 @@ build:
     - automat-visualize = automat._visualize:tool
 
 requirements:
+  build:
+    - patch     # [not win]
+    - m2-patch  # [win]
   host:
     - python
     - pip
     - setuptools_scm
+    - setuptools
+    - wheel
   run:
     - python
     - attrs >=16.1.0
