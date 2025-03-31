@@ -30,10 +30,12 @@ test:
   requires:
     - python-graphviz >0.5.1
     - twisted >=16.1.1
+    - pip
   imports:
     - automat
   commands:
     - automat-visualize -h
+    - pip check
 
 about:
   home: https://github.com/glyph/Automat
