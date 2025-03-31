@@ -1,26 +1,21 @@
-{% set version = "20.2.0" %}
+{% set name = "automat" %}
+{% set version = "24.8.1" %}
 
 package:
-  name: automat
+  name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/A/Automat/Automat-{{ version }}.tar.gz
-  sha256: 7979803c74610e11ef0c0d68a2942b152df52da55336e0c9d58daf1831cbdf33
-  patches:
-    - 0001-m2r-is-not-a-strict-build-dependency.patch
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: b34227cf63f6325b8ad2399ede780675083e439b20c323d376373d8ee6306d88
 
 build:
   number: 0
-  noarch: python
-  script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv"
+  script: "{{ PYTHON }} -m pip install . --no-deps --no-build-isolation --ignore-installed --no-cache-dir -vvv"
   entry_points:
     - automat-visualize = automat._visualize:tool
 
 requirements:
-  build:
-    - patch     # [not win]
-    - m2-patch  # [win]
   host:
     - python
     - pip
@@ -29,8 +24,7 @@ requirements:
     - wheel
   run:
     - python
-    - attrs >=16.1.0
-    - six
+    - typing_extensions # [py<310]
 
 test:
   requires:
